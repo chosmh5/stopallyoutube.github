@@ -3,50 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Embed Controller</title>
+    <title>One Video at a Time</title>
 </head>
 <body>
-    <!-- 6개의 유튜브 영상 -->
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/hllApaoOa14?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/-iL18cSQ6_A?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/xNCDwys3iig?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/j3f_h684Rww?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/a_rrj1Xh5LI?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
-    <iframe class="ytPlayer" width="560" height="315"
-        src="https://www.youtube.com/embed/OeadMRojh18?enablejsapi=1"
-        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
-    </iframe>
+    <iframe class="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/영상ID1?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 
-    <!-- 버튼 -->
-    <button onclick="pauseAll()">⏸ 전체 일시정지</button>
+    <iframe class="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/영상ID2?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+
+    <iframe class="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/영상ID3?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 
     <script>
-        function sendCommandToAll(command) {
-            const iframes = document.querySelectorAll(".ytPlayer");
-            iframes.forEach(iframe => {
-                iframe.contentWindow.postMessage(
-                    `{"event":"command","func":"${command}","args":""}`, "*"
-                );
-            });
+        let players = [];
 
-        function pauseAll() {
-            sendCommandToAll("pauseVideo");
+        function onYouTubeIframeAPIReady() {
+            document.querySelectorAll('.youtube-player').forEach((iframe, index) => {
+                players[index] = new YT.Player(iframe, {
+                    events: {
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            });
         }
+
+        function onPlayerStateChange(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+                players.forEach(player => {
+                    if (player !== event.target) {
+                        player.pauseVideo();
+                    }
+                });
+            }
+        }
+
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     </script>
 </body>
 </html>
