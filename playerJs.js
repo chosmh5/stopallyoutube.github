@@ -28,10 +28,10 @@ $(function () {
   ];
   const albumArtworks = ["_1", "_2", "_3", "_4"];
   const trackUrl = [
-    "https://chosmh5.github.io/stopallyoutube.github/Piercing-the-dawn-of-time.mp3",
-    "https://chosmh5.github.io/stopallyoutube.github/DECO＊27 - 人質交換 feat. 初音ミク [d_svmw65Mgk].mp3",
-    "https://chosmh5.github.io/stopallyoutube.github/切り札.mp3",
-    "https://chosmh5.github.io/stopallyoutube.github/Million Star.mp3"
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/Piercing-the-dawn-of-time.mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/DECO＊27 - 人質交換 feat. 初音ミク [d_svmw65Mgk].mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/切り札.mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/Million Star.mp3"
   ];
 
   let bgArtworkUrl,
@@ -61,6 +61,9 @@ $(function () {
         checkBuffering();
         i.attr("class", "fas fa-pause");
         audio.play();
+        audio.addEventListener('ended', function() {
+document.getElementById("play-next").click();
+}, false);
       } else {
         playerTrack.removeClass("active");
         albumArt.removeClass("active");
