@@ -3,37 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Pause Button</title>
-    <style>
-        #pause-btn {
-            padding: 10px 20px;
-            background-color: red;
-            color: white;
-            font-size: 16px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-    </style>
+    <title>YouTube Embed Controller</title>
 </head>
 <body>
+    <!-- 6개의 유튜브 영상 -->
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/hllApaoOa14?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/-iL18cSQ6_A?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/xNCDwys3iig?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/j3f_h684Rww?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/a_rrj1Xh5LI?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
+    <iframe class="ytPlayer" width="560" height="315"
+        src="https://www.youtube.com/embed/OeadMRojh18?enablejsapi=1"
+        allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen>
+    </iframe>
 
-    <button id="pause-btn">⏸ 모든 유튜브 영상 정지</button>
+    <!-- 버튼 -->
+    <button onclick="pauseAll()">⏸ 전체 일시정지</button>
 
     <script>
-        document.getElementById("pause-btn").addEventListener("click", function () {
-            let iframes = document.querySelectorAll("iframe");
-            
+        function sendCommandToAll(command) {
+            const iframes = document.querySelectorAll(".ytPlayer");
             iframes.forEach(iframe => {
-                let src = iframe.src;
-
-                // 유튜브 동영상인지 확인
-                if (src.includes("youtube.com/embed") || src.includes("youtube.com/watch")) {
-                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', "*");
-                }
+                iframe.contentWindow.postMessage(
+                    `{"event":"command","func":"${command}","args":""}`, "*"
+                );
             });
-        });
-    </script>
 
+        function pauseAll() {
+            sendCommandToAll("pauseVideo");
+        }
+    </script>
 </body>
 </html>
