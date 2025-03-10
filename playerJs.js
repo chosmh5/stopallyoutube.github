@@ -15,26 +15,23 @@ $(function () {
   const playPreviousTrackButton = $("#play-previous");
   const playNextTrackButton = $("#play-next");
   const albums = [
-    "Me & You",
-    "Dawn",
-    "Electro Boy",
-    "Home",
-    "Proxy (Original Mix)"
+    "Piercing the dawn of time",
+    "人質交換 feat. 初音ミク",
+    "切り札",
+    "Million Star"
   ];
   const trackNames = [
-    "Alex Skrindo - Me & You",
-    "Skylike - Dawn",
-    "Kaaze - Electro Boy",
-    "Jordan Schor - Home",
-    "Martin Garrix - Proxy"
+    "Girls Band Cry - Piercing the dawn of time",
+    "DECO*27 - 人質交換 feat. 初音ミク",
+    "cinema staff - 切り札",
+    "Girls Dead Monster - Million Star"
   ];
-  const albumArtworks = ["_1", "_2", "_3", "_4", "_5"];
+  const albumArtworks = ["_1", "_2", "_3", "_4"];
   const trackUrl = [
-    "https://singhimalaya.github.io/Codepen/assets/music/1.mp3",
-    "https://singhimalaya.github.io/Codepen/assets/music/2.mp3",
-    "https://singhimalaya.github.io/Codepen/assets/music/3.mp3",
-    "https://singhimalaya.github.io/Codepen/assets/music/4.mp3",
-    "https://singhimalaya.github.io/Codepen/assets/music/5.mp3"
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/Piercing-the-dawn-of-time.mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/DECO＊27 - 人質交換 feat. 初音ミク [d_svmw65Mgk].mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/切り札.mp3",
+    "https://raw.githubusercontent.com/chosmh5/stopallyoutube.github/refs/heads/main/Million Star.mp3"
   ];
 
   let bgArtworkUrl,
