@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Pause Button</title>
+    <style>
+        #pause-btn {
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="pause-btn">⏸ 모든 유튜브 영상 정지</button>
+
+    <script>
+        document.getElementById("pause-btn").addEventListener("click", function() {
+            window.parent.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        });
+    </script>
+</body>
+</html>
